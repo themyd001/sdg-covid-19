@@ -1,7 +1,7 @@
 function getIBRTS(x, y) {
   let remainder = 0;
   let quotient = 0;
-  let out = y;
+  let out = Math.trunc(y);
   if (x === 'weeks') { out = y * 7; } else if (x === 'months') { out = y * 30; }
   remainder = Math.trunc(out) % 3;
   const mout = out - remainder;

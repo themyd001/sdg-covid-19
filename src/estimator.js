@@ -18,6 +18,8 @@ function getIBRTS(x, y) {
     return quotient;
 }
 
+
+
 const covid19ImpactEstimator = (data) => 
 {       const allData = data;
         const getIBRT = getIBRTS(allData.periodType, allData.timeToElapse);

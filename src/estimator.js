@@ -13,8 +13,8 @@ const covid19ImpactEstimator = (data) => {
   const allData = data;
   const getIBRT = getIBRTS(allData.periodType, allData.timeToElapse);
   const getIBR = 2 ** getIBRT;
-  let impact = {};
-  let severeImpact = {};
+  const impact = {};
+  const severeImpact = {};
   let imp;
   let smp;
   //    Challenge 1
@@ -47,8 +47,6 @@ const covid19ImpactEstimator = (data) => {
   impact.dollarsInFlight = imp * allData.region.avgDailyIncomeInUSD * getIBRT;
   smp = severeImpact.infectionsByRequestedTime * allData.region.avgDailyIncomePopulation;
   severeImpact.dollarsInFlight = smp * allData.region.avgDailyIncomeInUSD * getIBRT;
-  return { data, impact, severeImpact};
-
+  return { data, impact, severeImpact };
 };
- 
 export default covid19ImpactEstimator;

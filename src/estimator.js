@@ -2,16 +2,23 @@ function getIBRTS(x, y) {
   let remainder = 0;
   let quotient = 0;
   let out = Math.trunc(y);
-  if (x === 'weeks') { out = y * 7; } else if (x === 'months') { out = y * 30; }
+  if (x === 'weeks') { out = out * 7; } else if (x === 'months') { out = out * 30; }
   remainder = Math.trunc(out) % 3;
   const mout = out - remainder;
   quotient = Math.trunc(mout / 3);
   return quotient;
 }
-
+function getIBRTSS(x, y) {
+  let remainder = 0;
+  let out = Math.trunc(y);
+  if (x === 'weeks') { out = out * 7; } else if (x === 'months') { out = y * 30; }
+  remainder = Math.trunc(out);
+  return remainder;
+}
 const covid19ImpactEstimator = (data) => {
   const allData = data;
   const getIBRT = getIBRTS(allData.periodType, allData.timeToElapse);
+  const days = getIBRTSS(allData.periodType, allData.timeToElapse);
   const getIBR = 2 ** getIBRT;
   const impact = {};
   const severeImpact = {};
@@ -32,10 +39,10 @@ const covid19ImpactEstimator = (data) => {
   severeImpact.severeCasesByRequestedTime = Math.trunc(smp);
   //    b
   imp = Math.trunc(allData.totalHospitalBeds * 0.35) - impact.severeCasesByRequestedTime;
-  if (imp < 0) { imp += 1; }
+  // if (imp < 0) { imp += 1; }
   impact.hospitalBedsByRequestedTime = imp;
   smp = Math.trunc(allData.totalHospitalBeds * 0.35) - severeImpact.severeCasesByRequestedTime;
-  if (smp < 0) { smp += 1; }
+  // if (smp < 0) { smp += 1; }
   impact.hospitalBedsByRequestedTime = imp;
   severeImpact.hospitalBedsByRequestedTime = smp;
   //    Challenge 3
@@ -49,9 +56,9 @@ const covid19ImpactEstimator = (data) => {
   severeImpact.casesForVentilatorsByRequestedTime = smp;
   //    c
   imp = impact.infectionsByRequestedTime * allData.region.avgDailyIncomePopulation;
-  impact.dollarsInFlight = Math.trunc(imp * allData.region.avgDailyIncomeInUSD * getIBRT);
+  impact.dollarsInFlight = Math.trunc(imp * allData.region.avgDailyIncomeInUSD * days);
   smp = severeImpact.infectionsByRequestedTime * allData.region.avgDailyIncomePopulation;
-  severeImpact.dollarsInFlight = Math.trunc(smp * allData.region.avgDailyIncomeInUSD * getIBRT);
+  severeImpact.dollarsInFlight = Math.trunc(smp * allData.region.avgDailyIncomeInUSD * days);
   return { data, impact, severeImpact };
 };
 export default covid19ImpactEstimator;

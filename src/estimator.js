@@ -1,18 +1,13 @@
 function getIBRTS(x, y) {
-    let remainder =0;
-    let quotient = 0;
-       
-    if(x == 'weeks')
-    {
+  let remainder = 0;
+  let quotient = 0;
+  if(x == 'weeks') {
         y = y * 7;
     }
-    else if(x == 'months')
-    {
+  else if(x == 'months') {
         y = y * 30;
     }
-
     remainder = y%3;
-    
     y = y - remainder;
     quotient = y/3;
     return quotient;

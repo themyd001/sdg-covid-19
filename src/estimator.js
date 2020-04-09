@@ -27,26 +27,26 @@ const covid19ImpactEstimator = (data) => {
   //    Challenge 2
   //    a
   imp = impact.infectionsByRequestedTime * 0.15;
-  impact.severeCasesByRequestedTime = imp;
+  impact.severeCasesByRequestedTime = Math.floor(imp);
   smp = severeImpact.infectionsByRequestedTime * 0.15;
-  severeImpact.severeCasesByRequestedTime = smp;
+  severeImpact.severeCasesByRequestedTime = Math.floor(smp);
   //    b
   imp = (allData.totalHospitalBeds * 0.35) - impact.severeCasesByRequestedTime;
-  impact.hospitalBedsByRequestedTime = imp;
+  impact.hospitalBedsByRequestedTime = Math.floor(imp);
   smp = (allData.totalHospitalBeds * 0.35) - severeImpact.severeCasesByRequestedTime;
-  severeImpact.hospitalBedsByRequestedTime = smp;
+  severeImpact.hospitalBedsByRequestedTime = Math.floor(smp);
   //    Challenge 3
   //    a
-  impact.casesForICUByRequestedTime = impact.infectionsByRequestedTime * 0.05;
-  severeImpact.casesForICUByRequestedTime = severeImpact.infectionsByRequestedTime * 0.05;
+  impact.casesForICUByRequestedTime = Math.floor(impact.infectionsByRequestedTime * 0.05);
+  severeImpact.casesForICUByRequestedTime = Math.floor(severeImpact.infectionsByRequestedTime * 0.05);
   //    b
-  impact.casesForVentilatorsByRequestedTime = impact.infectionsByRequestedTime * 0.02;
-  severeImpact.casesForVentilatorsByRequestedTime = severeImpact.infectionsByRequestedTime * 0.02;
+  impact.casesForVentilatorsByRequestedTime = Math.floor(impact.infectionsByRequestedTime * 0.02);
+  severeImpact.casesForVentilatorsByRequestedTime = Math.floor(severeImpact.infectionsByRequestedTime * 0.02);
   //    c
   imp = impact.infectionsByRequestedTime * allData.region.avgDailyIncomePopulation;
-  impact.dollarsInFlight = imp * allData.region.avgDailyIncomeInUSD * getIBRT;
+  impact.dollarsInFlight = Math.floor(imp * allData.region.avgDailyIncomeInUSD * getIBRT);
   smp = severeImpact.infectionsByRequestedTime * allData.region.avgDailyIncomePopulation;
-  severeImpact.dollarsInFlight = smp * allData.region.avgDailyIncomeInUSD * getIBRT;
+  severeImpact.dollarsInFlight = Math.floor(smp * allData.region.avgDailyIncomeInUSD * getIBRT);
   return { data, impact, severeImpact };
 };
 export default covid19ImpactEstimator;

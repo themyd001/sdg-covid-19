@@ -32,10 +32,10 @@ const covid19ImpactEstimator = (data) => {
   severeImpact.severeCasesByRequestedTime = Math.trunc(smp);
   //    b
   imp = Math.trunc(allData.totalHospitalBeds * 0.35) - impact.severeCasesByRequestedTime;
-  if (imp < 0) { imp -= 1; }
+  if (imp < 0) { imp += 1; }
   impact.hospitalBedsByRequestedTime = imp;
   smp = Math.trunc(allData.totalHospitalBeds * 0.35) - severeImpact.severeCasesByRequestedTime;
-  if (smp < 0) { smp -= 1; }
+  if (smp < 0) { smp += 1; }
   impact.hospitalBedsByRequestedTime = imp;
   severeImpact.hospitalBedsByRequestedTime = smp;
   //    Challenge 3

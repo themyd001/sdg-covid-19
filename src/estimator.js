@@ -16,10 +16,11 @@ function getIBRTS(x, y)
     return quotient;
 }
 
-const covid19ImpactEstimator = (data) => {
-        const allData = data;
+const covid19ImpactEstimator = (data) => 
+{       const allData = data;
         const getIBRT = getIBRTS(allData.periodType, allData.timeToElapse);
         const getIBR = 2 ** getIBRT;
+
         let impact, severeImpact = {};
 
         //Challenge 1

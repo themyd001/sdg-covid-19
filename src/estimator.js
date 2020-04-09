@@ -1,5 +1,6 @@
 function getIBRTS(x, y) {
     let remainder, quotient;
+    
     if(x == 'weeks')
     {
         y = y * 7;

@@ -1,16 +1,17 @@
 function getIBRTS(x, y) {
   let remainder = 0;
   let quotient = 0;
-  if(x == 'weeks') {
-        y = y * 7;
+  let out = y;
+  if (x === 'weeks') {
+    out = y * 7;
     }
-  else if(x == 'months') {
-        y = y * 30;
+  else if (x == 'months') {
+    out = y * 30;
     }
-    remainder = y%3;
-    y = y - remainder;
-    quotient = y/3;
-    return quotient;
+  remainder = out%3;
+  out = out - remainder;
+  quotient = out/3;
+  return quotient;
 }
 
 const covid19ImpactEstimator = (data) => 

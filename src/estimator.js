@@ -1,4 +1,4 @@
-function getIBRTS(x, y){
+function getIBRTS(x, y) {
     let remainder, quotient;
     if(x == 'weeks')
     {

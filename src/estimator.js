@@ -19,36 +19,36 @@ const covid19ImpactEstimator = (data) => {
   let smp;
   //    Challenge 1
   //    a
-  impact.currentlyInfected = Math.floor(allData.reportedCases) * 10;
-  severeImpact.currentlyInfected = Math.floor(allData.reportedCases) * 50;
+  impact.currentlyInfected = Math.trunc(allData.reportedCases) * 10;
+  severeImpact.currentlyInfected = Math.trunc(allData.reportedCases) * 50;
   //    b
   impact.infectionsByRequestedTime = impact.currentlyInfected * getIBR;
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * getIBR;
   //    Challenge 2
   //    a
   imp = impact.infectionsByRequestedTime * 0.15;
-  impact.severeCasesByRequestedTime = Math.floor(imp);
+  impact.severeCasesByRequestedTime = Math.trunc(imp);
   smp = severeImpact.infectionsByRequestedTime * 0.15;
-  severeImpact.severeCasesByRequestedTime = Math.floor(smp);
+  severeImpact.severeCasesByRequestedTime = Math.trunc(smp);
   //    b
-  imp = Math.floor(allData.totalHospitalBeds * 0.35) - impact.severeCasesByRequestedTime;
+  imp = Math.trunc(allData.totalHospitalBeds * 0.35) - impact.severeCasesByRequestedTime;
   impact.hospitalBedsByRequestedTime = imp;
-  smp = Math.floor(allData.totalHospitalBeds * 0.35) - severeImpact.severeCasesByRequestedTime;
+  smp = Math.trunc(allData.totalHospitalBeds * 0.35) - severeImpact.severeCasesByRequestedTime;
   severeImpact.hospitalBedsByRequestedTime = smp;
   //    Challenge 3
   //    a
-  impact.casesForICUByRequestedTime = Math.floor(impact.infectionsByRequestedTime * 0.05);
-  smp = Math.floor(severeImpact.infectionsByRequestedTime * 0.05);
+  impact.casesForICUByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.05);
+  smp = Math.trunc(severeImpact.infectionsByRequestedTime * 0.05);
   severeImpact.casesForICUByRequestedTime = smp;
   //    b
-  impact.casesForVentilatorsByRequestedTime = Math.floor(impact.infectionsByRequestedTime * 0.02);
-  smp = Math.floor(severeImpact.infectionsByRequestedTime * 0.02);
+  impact.casesForVentilatorsByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.02);
+  smp = Math.trunc(severeImpact.infectionsByRequestedTime * 0.02);
   severeImpact.casesForVentilatorsByRequestedTime = smp;
   //    c
   imp = impact.infectionsByRequestedTime * allData.region.avgDailyIncomePopulation;
-  impact.dollarsInFlight = Math.floor(imp * allData.region.avgDailyIncomeInUSD * getIBRT);
+  impact.dollarsInFlight = Math.trunc(imp * allData.region.avgDailyIncomeInUSD * getIBRT);
   smp = severeImpact.infectionsByRequestedTime * allData.region.avgDailyIncomePopulation;
-  severeImpact.dollarsInFlight = Math.floor(smp * allData.region.avgDailyIncomeInUSD * getIBRT);
+  severeImpact.dollarsInFlight = Math.trunc(smp * allData.region.avgDailyIncomeInUSD * getIBRT);
   return { data, impact, severeImpact };
 };
 export default covid19ImpactEstimator;

@@ -1,5 +1,4 @@
-function getIBRTS(x, y)
-{
+function getIBRTS(x, y){
     let remainder, quotient;
     if(x == 'weeks')
     {
@@ -60,7 +59,8 @@ const covid19ImpactEstimator = (data) =>
         return{
             data, 
             impact, 
-        severeImpact};
+        severeImpact
+    };
 
 };
  

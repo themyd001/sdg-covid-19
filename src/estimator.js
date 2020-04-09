@@ -28,12 +28,12 @@ const covid19ImpactEstimator = (data) => {
   //    a
   imp = impact.infectionsByRequestedTime * 0.15;
   impact.severeCasesByRequestedTime = imp;
-  smp =  severeImpact.infectionsByRequestedTime * 0.15;
+  smp = severeImpact.infectionsByRequestedTime * 0.15;
   severeImpact.severeCasesByRequestedTime = smp;
   //    b
-  imp =  (allData.totalHospitalBeds * 0.35) - impact.severeCasesByRequestedTime;
+  imp = (allData.totalHospitalBeds * 0.35) - impact.severeCasesByRequestedTime;
   impact.hospitalBedsByRequestedTime = imp;
-  smp =  (allData.totalHospitalBeds * 0.35) - severeImpact.severeCasesByRequestedTime;
+  smp = (allData.totalHospitalBeds * 0.35) - severeImpact.severeCasesByRequestedTime;
   severeImpact.hospitalBedsByRequestedTime = smp;
   //    Challenge 3
   //    a
@@ -47,11 +47,7 @@ const covid19ImpactEstimator = (data) => {
   impact.dollarsInFlight = imp * allData.region.avgDailyIncomeInUSD * getIBRT;
   smp = severeImpact.infectionsByRequestedTime * allData.region.avgDailyIncomePopulation;
   severeImpact.dollarsInFlight = smp * allData.region.avgDailyIncomeInUSD * getIBRT;
-  return {
-    data, 
-    impact, 
-    severeImpact
-    };
+  return { data, impact, severeImpact};
 
 };
  

@@ -15,6 +15,8 @@ const covid19ImpactEstimator = (data) => {
   const getIBR = 2 ** getIBRT;
   let impact = {};
   let severeImpact = {};
+  let imp;
+  let smp;
   //    Challenge 1
   //    a
   impact.currentlyInfected = allData.reportedCases * 10;
@@ -24,13 +26,15 @@ const covid19ImpactEstimator = (data) => {
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * getIBR;
   //    Challenge 2
   //    a
-  impact.severeCasesByRequestedTime = 
-    impact.infectionsByRequestedTime * 0.15;
-  severeImpact.severeCasesByRequestedTime = 
-    severeImpact.infectionsByRequestedTime * 0.15;
+  imp = impact.infectionsByRequestedTime * 0.15;
+  impact.severeCasesByRequestedTime = imp;
+  smp =  severeImpact.infectionsByRequestedTime * 0.15;
+  severeImpact.severeCasesByRequestedTime = smp;
   //    b
-  impact.hospitalBedsByRequestedTime = (allData.totalHospitalBeds * 0.35) - impact.severeCasesByRequestedTime;
-  severeImpact.hospitalBedsByRequestedTime = (allData.totalHospitalBeds * 0.35) - severeImpact.severeCasesByRequestedTime;
+  imp =  (allData.totalHospitalBeds * 0.35) - impact.severeCasesByRequestedTime;
+  impact.hospitalBedsByRequestedTime = imp;
+  smp =  (allData.totalHospitalBeds * 0.35) - severeImpact.severeCasesByRequestedTime;
+  severeImpact.hospitalBedsByRequestedTime = smp;
   //    Challenge 3
   //    a
   impact.casesForICUByRequestedTime = impact.infectionsByRequestedTime * 0.05;
@@ -39,8 +43,10 @@ const covid19ImpactEstimator = (data) => {
   impact.casesForVentilatorsByRequestedTime = impact.infectionsByRequestedTime * 0.02;
   severeImpact.casesForVentilatorsByRequestedTime = severeImpact.infectionsByRequestedTime * 0.02;
   //    c
-  impact.dollarsInFlight = impact.infectionsByRequestedTime * allData.region.avgDailyIncomePopulation * allData.region.avgDailyIncomeInUSD * getIBRT;
-  severeImpact.dollarsInFlight = severeImpact.infectionsByRequestedTime * allData.region.avgDailyIncomePopulation * allData.region.avgDailyIncomeInUSD * getIBRT;
+  imp = impact.infectionsByRequestedTime * allData.region.avgDailyIncomePopulation;
+  impact.dollarsInFlight = imp * allData.region.avgDailyIncomeInUSD * getIBRT;
+  smp = severeImpact.infectionsByRequestedTime * allData.region.avgDailyIncomePopulation;
+  severeImpact.dollarsInFlight = smp * allData.region.avgDailyIncomeInUSD * getIBRT;
   return {
     data, 
     impact, 

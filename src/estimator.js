@@ -1,6 +1,7 @@
 function getIBRTS(x, y) {
-    let remainder, quotient;
-    
+    let remainder =0;
+    let quotient = 0;
+       
     if(x == 'weeks')
     {
         y = y * 7;
@@ -11,6 +12,7 @@ function getIBRTS(x, y) {
     }
 
     remainder = y%3;
+    
     y = y - remainder;
     quotient = y/3;
     return quotient;

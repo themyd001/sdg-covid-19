@@ -56,9 +56,10 @@ const covid19ImpactEstimator = (data) => {
   severeImpact.casesForVentilatorsByRequestedTime = smp;
   //    c
   imp = impact.infectionsByRequestedTime * allData.region.avgDailyIncomePopulation;
-  impact.dollarsInFlight = Math.trunc(imp * allData.region.avgDailyIncomeInUSD * days);
+  impact.dollarsInFlight = Math.trunc((imp * allData.region.avgDailyIncomeInUSD) / days);
   smp = severeImpact.infectionsByRequestedTime * allData.region.avgDailyIncomePopulation;
-  severeImpact.dollarsInFlight = Math.trunc(smp * allData.region.avgDailyIncomeInUSD * days);
+  severeImpact.dollarsInFlight = Math.trunc((smp * allData.region.avgDailyIncomeInUSD) / days);
   return { data, impact, severeImpact };
 };
 export default covid19ImpactEstimator;
+ 

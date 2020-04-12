@@ -45,7 +45,7 @@ const covid19ImpactEstimator = (data) => {
   if (smp < 0) { smp += 1; }
   impact.hospitalBedsByRequestedTime = imp;
   severeImpact.hospitalBedsByRequestedTime = smp;
-  //    Challenge 3
+  //    Challenge 3,
   //    a
   impact.casesForICUByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.05);
   smp = Math.trunc(severeImpact.infectionsByRequestedTime * 0.05);
